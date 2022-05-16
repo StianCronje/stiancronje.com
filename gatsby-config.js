@@ -1,3 +1,15 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+const strapiConfig = {
+  apiURL: process.env.STRAPI_API_URL,
+  // accessToken: process.env.STRAPI_TOKEN,
+  collectionTypes: ['client'],
+  singleTypes: [],
+};
+
+
 module.exports = {
   siteMetadata: {
     title: `stiancronje.com`,
@@ -28,6 +40,10 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
+    },
+    {
+      resolve: `gatsby-source-strapi`,
+      options: strapiConfig,
     },
   ],
 }
